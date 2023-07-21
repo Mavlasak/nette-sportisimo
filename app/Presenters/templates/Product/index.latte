@@ -1,0 +1,31 @@
+{layout '../@layout.latte'}
+
+{block title}Značky{/block}
+
+{block content}
+    Počet položek v košíku: {$cartItemsCount}
+    Celková cen: {$cartItemsPriceSum}
+<table>
+    <thead>
+    <tr>
+        <th>Název</th>
+        <th>Tagy</th>
+        <th>Cena</th>
+        <th>Akce</th>
+    </tr>
+    </thead>
+    <tbody>
+    {foreach $products as $product}
+            <tr>
+            <td>{$product->name}</td>
+            <td>{foreach $product->related('product_tag.product_id') as $tag}
+                    {$tag->tag->name}
+                {/foreach}
+            </td>
+            <td>{$product->price} kč , {$product->price / $eurczratio} EUR </td>
+            <td><a n:href="Cart:addToCart $product->id, $product->price">Koupit</a></td>
+        </tr>
+    {/foreach}
+    </tbody>
+</table>
+{/block}

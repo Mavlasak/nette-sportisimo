@@ -1,0 +1,26 @@
+{layout '../@layout.latte'}
+
+{block title}Produkt{/block}
+
+{block content}
+<table>
+    <thead>
+    <tr>
+        <th>Název</th>
+        <th>Tagy</th>
+        <th>Cena</th>
+    </tr>
+    </thead>
+    <tbody>
+            <tr>
+            <td>{$product->name}</td>
+            <td>{foreach $product->related('product_tag.product_id') as $tag}
+                    {$tag->tag->name}
+                {/foreach}
+            </td>
+                <td>{$product->price} kč , {$product->price / $eurczratio} EUR </td>
+            <td><a n:href="Cart:addToCart $product->id, $product->price">Koupit</a></td>
+        </tr>
+    </tbody>
+</table>
+{/block}

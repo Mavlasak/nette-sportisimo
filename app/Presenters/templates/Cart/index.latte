@@ -1,0 +1,30 @@
+{layout '../@layout.latte'}
+
+{block title}Značky{/block}
+
+{block content}
+<table>
+    <thead>
+    <tr>
+        <th>Název</th>
+        <th>Tagy</th>
+        <th>Cena</th>
+        <th>Akce</th>
+    </tr>
+    </thead>
+    <tbody>
+    {foreach $items as $item}
+            <tr>
+            <td>{$item->name}</td>
+            <td>{foreach $item->related('product_tag.product_id') as $tag}
+                    {$tag->tag->name}
+                {/foreach}
+            </td>
+            <td>{$item->name}</td>
+            <td>{$item->price}</td>
+        </tr>
+    {/foreach}
+    </tbody>
+</table>
+    {control newOrderForm}
+{/block}

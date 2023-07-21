@@ -14,11 +14,12 @@
             <a n:href="index, 1, true, $itemPerPage"><i class="material-icons">arrow_downward</i></a>
             <a n:href="index, 1, false, $itemPerPage"><i class="material-icons">arrow_upward</i></a>
         </th>
-        <th style="text-align: left">Akce</th>
+        <th style="text-align: left">Akce2</th>
     </tr>
     </thead>
     <tbody>
     {foreach $trademarks as $trademark}
+    {dump($trademark->product?->type)}
     <tr>
         <td>{$trademark->name}</td>
         <td><a n:href="edit $trademark->id">Editovat</a> <a n:href="delete $trademark->id">Smazat</a></td>
